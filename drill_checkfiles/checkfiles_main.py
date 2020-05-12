@@ -9,8 +9,9 @@
 from tkinter import *
 import tkinter as tk
 
-# Importing gui
+# Importing other modules
 import checkfiles_gui
+import checkfiles_func
 
 
 # Tkinter frame we are inheriting from
@@ -28,7 +29,6 @@ class ParentWindow(Frame):
 
         # Load gui from separate file
         checkfiles_gui.load_gui(self)
-
 
 
 
