@@ -12,11 +12,9 @@ import checkfiles_gui
 
 
 def browseFiles(self):
-    global folder_path
-    folder_path = StringVar()
     filename = filedialog.askdirectory()
-    folder_path.set(filename)
-    return(filename)
+    self.txt_browse1.insert(0,filename)
+    
 
 
 
