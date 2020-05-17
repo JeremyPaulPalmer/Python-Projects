@@ -1,5 +1,7 @@
 import os
 import fnmatch
+import shutil
+import datetime
 from tkinter import *
 from tkinter import filedialog
 import tkinter as tk
@@ -32,25 +34,34 @@ def checkFiles(self):
     desired = '*.txt'
     matchingText = fnmatch.filter(folder_list, desired)
     for i in matchingText:
-        dateText = [matchingText, os.path.getmtime(matchingText)]
-    if matchingText:
+        oldPath = os.path.join(filename, i)
+        newPath = os.path.join(filename2, i)
         conn = sqlite3.connect('movedFiles.db')
         with conn:
             cur = conn.cursor()
             cur.execute("CREATE TABLE IF NOT EXISTS tbl_files( \
                 ID INTEGER PRIMARY KEY AUTOINCREMENT, \
                 col_files TEXT, \
-                col_mtime FLOAT \
+                col_mtime TEXT \
                 )")
+            cur.execute("INSERT INTO tbl_files(col_files) VALUES (?)", \
+                        (str.split(i)))
             conn.commit()
-    
-            for i in abPath:
-                cur.execute("INSERT INTO tbl_files(col_files, col_mtime) VALUES (?), (?)")
-                conn.commit()
-            cur.execute("SELECT col_files, col_mtime FROM tbl_files")
-            varFiles = cur.fetchall()
-            print(varFiles)
         conn.close()
+        shutil.move(oldPath, filename2)
+        print(newPath + ' ' + str(datetime.datetime.fromtimestamp(os.path.getmtime(newPath))))
+    modStamp = str(datetime.datetime.fromtimestamp(os.path.getmtime(newPath)))
+    for i in modStamp:
+        conn = sqlite3.connect('movedFiles.db')
+        with conn:
+            cur = conn.cursor()
+            cur.execute("INSERT INTO tbl_files(col_mtime) VALUES (?)", \
+                        (str.split(i)))
+            conn.commit()
+        conn.close()
+    
+
+            
     
         
 
