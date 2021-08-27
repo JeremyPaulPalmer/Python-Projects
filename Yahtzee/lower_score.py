@@ -1,4 +1,4 @@
-import classes
+import global_var
 import upper_lower
 import card
 import time
@@ -70,234 +70,114 @@ def lg_str(list):
     return False
             
 
-def lower_score():
+def lower_score():   
 
-    if classes.active_player1:   
+    global_var.dice_hist.append(len(global_var.ones_list))
+    global_var.dice_hist.append(len(global_var.twos_list))
+    global_var.dice_hist.append(len(global_var.threes_list))
+    global_var.dice_hist.append(len(global_var.fours_list))
+    global_var.dice_hist.append(len(global_var.fives_list))
+    global_var.dice_hist.append(len(global_var.sixes_list))
 
-        classes.player1_var.dice_hist.append(len(classes.player1_var.ones_list))
-        classes.player1_var.dice_hist.append(len(classes.player1_var.twos_list))
-        classes.player1_var.dice_hist.append(len(classes.player1_var.threes_list))
-        classes.player1_var.dice_hist.append(len(classes.player1_var.fours_list))
-        classes.player1_var.dice_hist.append(len(classes.player1_var.fives_list))
-        classes.player1_var.dice_hist.append(len(classes.player1_var.sixes_list))
-
+    score = (input('Where would you like to score? (1-7) '))
+    while score != '1' and score != '2' and score != '3' and score != '4' and score != '5' and score != '6' and score != '7': 
         score = (input('Where would you like to score? (1-7) '))
-        while score != '1' and score != '2' and score != '3' and score != '4' and score != '5' and score != '6' and score != '7': 
-            score = (input('Where would you like to score? (1-7) '))
-        if score == '0' or score >= '8':
-            score = ''
-            lower_score()
-        while score:
-            if score == 'one'.lower().strip() or score == '1':
-                if isinstance(classes.player1_var.threek, int):
-                    print('Already scored. Try again!')
-                    upper_lower.upper_lower()
-                elif classes.player1_var.threek == '__' and three_kind(classes.player1_var.dice_hist):
-                    classes.player1_var.threek = sum(classes.player1_var.dice_list)
-                    classes.player1_var.lower_sub_list.append(classes.player1_var.threek)
-                    classes.player1_var.counter_lower += 1
-                    score = ''
-                else:
-                    classes.player1_var.threek = 0
-                    classes.player1_var.counter_lower += 1
-                    score = ''
-            elif score == 'two'.lower().strip() or score == '2':
-                if isinstance(classes.player1_var.fourk, int):
-                    print('Already scored. Try again!')
-                    upper_lower.upper_lower()
-                elif classes.player1_var.fourk == '__' and four_kind(classes.player1_var.dice_hist):
-                    classes.player1_var.fourk = sum(classes.player1_var.dice_list)
-                    classes.player1_var.lower_sub_list.append(classes.player1_var.fourk)
-                    classes.player1_var.counter_lower += 1
-                    score = ''
-                else:
-                    classes.player1_var.fourk = 0
-                    classes.player1_var.counter_lower += 1
-                    score = ''
-            elif score == 'three'.lower().strip() or score == '3':
-                if isinstance(classes.player1_var.house, int):
-                    print('Already scored. Try again!')
-                    upper_lower.upper_lower()
-                elif classes.player1_var.house == '__' and full_house(classes.player1_var.dice_hist):
-                    classes.player1_var.house = 25
-                    classes.player1_var.lower_sub_list.append(classes.player1_var.house)
-                    classes.player1_var.counter_lower += 1
-                    score = ''
-                else:
-                    classes.player1_var.house = 0
-                    classes.player1_var.counter_lower += 1
-                    score = ''
-            elif score == 'four'.lower().strip() or score == '4':
-                if isinstance(classes.player1_var.sm_str, int):
-                    print('Already scored. Try again!')
-                    upper_lower.upper_lower()
-                elif classes.player1_var.sm_str == '__' and sm_str(classes.player1_var.dice_hist):
-                    classes.player1_var.sm_str = 30
-                    classes.player1_var.lower_sub_list.append(classes.player1_var.sm_str)
-                    classes.player1_var.counter_lower += 1
-                    score = ''
-                else:
-                    classes.player1_var.sm_str = 0
-                    classes.player1_var.counter_lower += 1
-                    score = ''
-            elif score == 'five'.lower().strip() or score == '5':
-                if isinstance(classes.player1_var.lg_str, int):
-                    print('Already scored. Try again!')
-                    upper_lower.upper_lower()
-                elif classes.player1_var.lg_str == '__' and lg_str(classes.player1_var.dice_hist):
-                    classes.player1_var.lg_str = 40
-                    classes.player1_var.lower_sub_list.append(classes.player1_var.lg_str)
-                    classes.player1_var.counter_lower += 1
-                    score = ''
-                else:
-                    classes.player1_var.lg_str = 0
-                    classes.player1_var.counter_lower += 1
-                    score = '' 
-            elif score == 'six'.lower().strip() or score == '6':
-                if isinstance(classes.player1_var.yahtzee, str):
-                    classes.player1_var.yahtzee = 0
-                    classes.player1_var.lower_sub_list.append(classes.player1_var.yahtzee)
-                    classes.player1_var.counter_lower += 1
-                    score = ''
-                elif classes.player1_var.yahtzee == 0:
-                    print('Already scored. Try again!')
-                else:
-                    classes.player1_var.yaht_bon_list.append(100)
-                    classes.player1_var.yaht_bon = sum(classes.player1_var.yaht_bon_list)
-            elif score == 'seven'.lower().strip() or score == '7':
-                if isinstance(classes.player1_var.chance, int):
-                    print('Already scored. Try again!')
-                    upper_lower.upper_lower()
-                elif classes.player1_var.chance == '__':
-                    classes.player1_var.chance = sum(classes.player1_var.dice_list)
-                    classes.player1_var.lower_sub_list.append(classes.player1_var.chance)
-                    classes.player1_var.counter_lower += 1
-                    score = ''
-                else:
-                    classes.player1_var.chance = 0
-                    classes.player1_var.counter_lower += 1
-                    score = ''
-        
-            card.card()
-            time.sleep(2)
-            classes.player1_var.roll_counter = 0
-            classes.player1_var.dice_list = []
-            classes.player1_var.dice_hist = []
-            if classes.num_players > 1:
-                classes.active_player1 = False
-                classes.active_player2 = True
-
-    if classes.active_player2:   
-
-        classes.player2_var.dice_hist.append(len(classes.player2_var.ones_list))
-        classes.player2_var.dice_hist.append(len(classes.player2_var.twos_list))
-        classes.player2_var.dice_hist.append(len(classes.player2_var.threes_list))
-        classes.player2_var.dice_hist.append(len(classes.player2_var.fours_list))
-        classes.player2_var.dice_hist.append(len(classes.player2_var.fives_list))
-        classes.player2_var.dice_hist.append(len(classes.player2_var.sixes_list))
-
-        score = (input('Where would you like to score? (1-7) '))
-        while score != '1' and score != '2' and score != '3' and score != '4' and score != '5' and score != '6' and score != '7': 
-            score = (input('Where would you like to score? (1-7) '))
-        if score == '0' or score >= '8':
-            score = ''
-            lower_score()
-        while score:
-            if score == 'one'.lower().strip() or score == '1':
-                if isinstance(classes.player2_var.threek, int):
-                    print('Already scored. Try again!')
-                    upper_lower.upper_lower()
-                elif classes.player2_var.threek == '__' and three_kind(classes.player2_var.dice_hist):
-                    classes.player2_var.threek = sum(classes.player2_var.dice_list)
-                    classes.player2_var.lower_sub_list.append(classes.player2_var.threek)
-                    classes.player2_var.counter_lower += 1
-                    score = ''
-                else:
-                    classes.player2_var.threek = 0
-                    classes.player2_var.counter_lower += 1
-                    score = ''
-            elif score == 'two'.lower().strip() or score == '2':
-                if isinstance(classes.player2_var.fourk, int):
-                    print('Already scored. Try again!')
-                    upper_lower.upper_lower()
-                elif classes.player2_var.fourk == '__' and four_kind(classes.player2_var.dice_hist):
-                    classes.player2_var.fourk = sum(classes.player2_var.dice_list)
-                    classes.player2_var.lower_sub_list.append(classes.player2_var.fourk)
-                    classes.player2_var.counter_lower += 1
-                    score = ''
-                else:
-                    classes.player2_var.fourk = 0
-                    classes.player2_var.counter_lower += 1
-                    score = ''
-            elif score == 'three'.lower().strip() or score == '3':
-                if isinstance(classes.player2_var.house, int):
-                    print('Already scored. Try again!')
-                    upper_lower.upper_lower()
-                elif classes.player2_var.house == '__' and full_house(classes.player2_var.dice_hist):
-                    classes.player2_var.house = 25
-                    classes.player2_var.lower_sub_list.append(classes.player2_var.house)
-                    classes.player2_var.counter_lower += 1
-                    score = ''
-                else:
-                    classes.player2_var.house = 0
-                    classes.player2_var.counter_lower += 1
-                    score = ''
-            elif score == 'four'.lower().strip() or score == '4':
-                if isinstance(classes.player2_var.sm_str, int):
-                    print('Already scored. Try again!')
-                    upper_lower.upper_lower()
-                elif classes.player2_var.sm_str == '__' and sm_str(classes.player2_var.dice_hist):
-                    classes.player2_var.sm_str = 30
-                    classes.player2_var.lower_sub_list.append(classes.player2_var.sm_str)
-                    classes.player2_var.counter_lower += 1
-                    score = ''
-                else:
-                    classes.player2_var.sm_str = 0
-                    classes.player2_var.counter_lower += 1
-                    score = ''
-            elif score == 'five'.lower().strip() or score == '5':
-                if isinstance(classes.player2_var.lg_str, int):
-                    print('Already scored. Try again!')
-                    upper_lower.upper_lower()
-                elif classes.player2_var.lg_str == '__' and lg_str(classes.player2_var.dice_hist):
-                    classes.player2_var.lg_str = 40
-                    classes.player2_var.lower_sub_list.append(classes.player2_var.lg_str)
-                    classes.player2_var.counter_lower += 1
-                    score = ''
-                else:
-                    classes.player2_var.lg_str = 0
-                    classes.player2_var.counter_lower += 1
-                    score = '' 
-            elif score == 'six'.lower().strip() or score == '6':
-                if isinstance(classes.player2_var.yahtzee, str):
-                    classes.player2_var.yahtzee = 0
-                    classes.player2_var.lower_sub_list.append(classes.player2_var.yahtzee)
-                    classes.player2_var.counter_lower += 1
-                    score = ''
-                elif classes.player2_var.yahtzee == 0:
-                    print('Already scored. Try again!')
-                else:
-                    classes.player2_var.yaht_bon_list.append(100)
-                    classes.player2_var.yaht_bon = sum(classes.player2_var.yaht_bon_list)
-            elif score == 'seven'.lower().strip() or score == '7':
-                if isinstance(classes.player2_var.chance, int):
-                    print('Already scored. Try again!')
-                    upper_lower.upper_lower()
-                elif classes.player2_var.chance == '__':
-                    classes.player2_var.chance = sum(classes.player2_var.dice_list)
-                    classes.player2_var.lower_sub_list.append(classes.player2_var.chance)
-                    classes.player2_var.counter_lower += 1
-                    score = ''
-                else:
-                    classes.player2_var.chance = 0
-                    classes.player2_var.counter_lower += 1
-                    score = ''
-        
-            card.card()
-            time.sleep(2)
-            classes.player2_var.roll_counter = 0
-            classes.player2_var.dice_list = []
-            classes.player2_var.dice_hist = []
-            if classes.num_players > 2:
-                classes.active_player2 = False
-                classes.active_player3 = True
+    if score == '0' or score >= '8':
+        score = ''
+        lower_score()
+    while score:
+        if score == 'one'.lower().strip() or score == '1':
+            if isinstance(global_var.threek, int):
+                print('Already scored. Try again!')
+                upper_lower.upper_lower()
+            elif global_var.threek == '__' and three_kind(global_var.dice_hist):
+                global_var.threek = sum(global_var.dice_list)
+                global_var.lower_sub_list.append(global_var.threek)
+                global_var.counter_lower += 1
+                score = ''
+            else:
+                global_var.threek = 0
+                global_var.counter_lower += 1
+                score = ''
+        elif score == 'two'.lower().strip() or score == '2':
+            if isinstance(global_var.fourk, int):
+                print('Already scored. Try again!')
+                upper_lower.upper_lower()
+            elif global_var.fourk == '__' and four_kind(global_var.dice_hist):
+                global_var.fourk = sum(global_var.dice_list)
+                global_var.lower_sub_list.append(global_var.fourk)
+                global_var.counter_lower += 1
+                score = ''
+            else:
+                global_var.fourk = 0
+                global_var.counter_lower += 1
+                score = ''
+        elif score == 'three'.lower().strip() or score == '3':
+            if isinstance(global_var.house, int):
+                print('Already scored. Try again!')
+                upper_lower.upper_lower()
+            elif global_var.house == '__' and full_house(global_var.dice_hist):
+                global_var.house = 25
+                global_var.lower_sub_list.append(global_var.house)
+                global_var.counter_lower += 1
+                score = ''
+            else:
+                global_var.house = 0
+                global_var.counter_lower += 1
+                score = ''
+        elif score == 'four'.lower().strip() or score == '4':
+            if isinstance(global_var.sm_str, int):
+                print('Already scored. Try again!')
+                upper_lower.upper_lower()
+            elif global_var.sm_str == '__' and sm_str(global_var.dice_hist):
+                global_var.sm_str = 30
+                global_var.lower_sub_list.append(global_var.sm_str)
+                global_var.counter_lower += 1
+                score = ''
+            else:
+                global_var.sm_str = 0
+                global_var.counter_lower += 1
+                score = ''
+        elif score == 'five'.lower().strip() or score == '5':
+            if isinstance(global_var.lg_str, int):
+                print('Already scored. Try again!')
+                upper_lower.upper_lower()
+            elif global_var.lg_str == '__' and lg_str(global_var.dice_hist):
+                global_var.lg_str = 40
+                global_var.lower_sub_list.append(global_var.lg_str)
+                global_var.counter_lower += 1
+                score = ''
+            else:
+                global_var.lg_str = 0
+                global_var.counter_lower += 1
+                score = '' 
+        elif score == 'six'.lower().strip() or score == '6':
+            if isinstance(global_var.yahtzee, str):
+                global_var.yahtzee = 0
+                global_var.lower_sub_list.append(global_var.yahtzee)
+                global_var.counter_lower += 1
+                score = ''
+            elif global_var.yahtzee == 0:
+                print('Already scored. Try again!')
+            else:
+                global_var.yaht_bon_list.append(100)
+                global_var.yaht_bon = sum(global_var.yaht_bon_list)
+        elif score == 'seven'.lower().strip() or score == '7':
+            if isinstance(global_var.chance, int):
+                print('Already scored. Try again!')
+                upper_lower.upper_lower()
+            elif global_var.chance == '__':
+                global_var.chance = sum(global_var.dice_list)
+                global_var.lower_sub_list.append(global_var.chance)
+                global_var.counter_lower += 1
+                score = ''
+            else:
+                global_var.chance = 0
+                global_var.counter_lower += 1
+                score = ''
+    
+        card.card()
+        time.sleep(2)
+        global_var.roll_counter = 0
+        global_var.dice_list = []
+        global_var.dice_hist = []
