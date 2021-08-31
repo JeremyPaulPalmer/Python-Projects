@@ -74,7 +74,7 @@ def upper_score():
                     score = input('\nWhere would you like to score?\n')
 
             card.card()
-            time.sleep(2)
+            time.sleep(1)
             classes.player1_var.roll_counter = 0
             classes.player1_var.dice_list = []
             classes.player1_var.dice_hist = []
@@ -149,22 +149,17 @@ def upper_score():
                     score = input('\nWhere would you like to score?\n')
 
             card.card()
-            time.sleep(2)
+            time.sleep(1)
             classes.player2_var.roll_counter = 0
             classes.player2_var.dice_list = []
             classes.player2_var.dice_hist = []
 
-    if classes.active_player1:
-        classes.active_player1 = False
-        classes.active_player2 = True
-    elif classes.active_player2:
-        classes.active_player2 = False
-        classes.active_player3 = True
-    elif classes.active_player3:
-        classes.active_player3 = False
-        classes.active_player4 = True
-    else:
-        if classes.player4_var.grand_total:
-            print("Great Game!")
+    if classes.num_players == 1:
+        classes.active_player1 = True
+    elif classes.num_players == 2:
+        if classes.active_player1:
+            classes.active_player1 = False
+            classes.active_player2 = True
         else:
-            classes.active_player1
+            classes.active_player1 = True
+            classes.active_player2 = False

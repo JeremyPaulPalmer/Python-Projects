@@ -1,5 +1,6 @@
 import classes
-import upper_lower
+import upper_lower_p1
+import upper_lower_p2
 import card
 import time
 
@@ -91,7 +92,7 @@ def lower_score():
             if score == 'one'.lower().strip() or score == '1':
                 if isinstance(classes.player1_var.threek, int):
                     print('Already scored. Try again!')
-                    upper_lower.upper_lower()
+                    upper_lower_p1.upper_lower_p1()
                 elif classes.player1_var.threek == '__' and three_kind(classes.player1_var.dice_hist):
                     classes.player1_var.threek = sum(classes.player1_var.dice_list)
                     classes.player1_var.lower_sub_list.append(classes.player1_var.threek)
@@ -104,7 +105,7 @@ def lower_score():
             elif score == 'two'.lower().strip() or score == '2':
                 if isinstance(classes.player1_var.fourk, int):
                     print('Already scored. Try again!')
-                    upper_lower.upper_lower()
+                    upper_lower_p1.upper_lower_p1()
                 elif classes.player1_var.fourk == '__' and four_kind(classes.player1_var.dice_hist):
                     classes.player1_var.fourk = sum(classes.player1_var.dice_list)
                     classes.player1_var.lower_sub_list.append(classes.player1_var.fourk)
@@ -117,7 +118,7 @@ def lower_score():
             elif score == 'three'.lower().strip() or score == '3':
                 if isinstance(classes.player1_var.house, int):
                     print('Already scored. Try again!')
-                    upper_lower.upper_lower()
+                    upper_lower_p1.upper_lower_p1()
                 elif classes.player1_var.house == '__' and full_house(classes.player1_var.dice_hist):
                     classes.player1_var.house = 25
                     classes.player1_var.lower_sub_list.append(classes.player1_var.house)
@@ -130,7 +131,7 @@ def lower_score():
             elif score == 'four'.lower().strip() or score == '4':
                 if isinstance(classes.player1_var.sm_str, int):
                     print('Already scored. Try again!')
-                    upper_lower.upper_lower()
+                    upper_lower_p1.upper_lower_p1()
                 elif classes.player1_var.sm_str == '__' and sm_str(classes.player1_var.dice_hist):
                     classes.player1_var.sm_str = 30
                     classes.player1_var.lower_sub_list.append(classes.player1_var.sm_str)
@@ -143,7 +144,7 @@ def lower_score():
             elif score == 'five'.lower().strip() or score == '5':
                 if isinstance(classes.player1_var.lg_str, int):
                     print('Already scored. Try again!')
-                    upper_lower.upper_lower()
+                    upper_lower_p1.upper_lower_p1()
                 elif classes.player1_var.lg_str == '__' and lg_str(classes.player1_var.dice_hist):
                     classes.player1_var.lg_str = 40
                     classes.player1_var.lower_sub_list.append(classes.player1_var.lg_str)
@@ -167,7 +168,7 @@ def lower_score():
             elif score == 'seven'.lower().strip() or score == '7':
                 if isinstance(classes.player1_var.chance, int):
                     print('Already scored. Try again!')
-                    upper_lower.upper_lower()
+                    upper_lower_p1.upper_lower_p1()
                 elif classes.player1_var.chance == '__':
                     classes.player1_var.chance = sum(classes.player1_var.dice_list)
                     classes.player1_var.lower_sub_list.append(classes.player1_var.chance)
@@ -183,9 +184,6 @@ def lower_score():
             classes.player1_var.roll_counter = 0
             classes.player1_var.dice_list = []
             classes.player1_var.dice_hist = []
-            if classes.num_players > 1:
-                classes.active_player1 = False
-                classes.active_player2 = True
 
     if classes.active_player2:   
 
@@ -206,7 +204,7 @@ def lower_score():
             if score == 'one'.lower().strip() or score == '1':
                 if isinstance(classes.player2_var.threek, int):
                     print('Already scored. Try again!')
-                    upper_lower.upper_lower()
+                    upper_lower_p2.upper_lower_p2()
                 elif classes.player2_var.threek == '__' and three_kind(classes.player2_var.dice_hist):
                     classes.player2_var.threek = sum(classes.player2_var.dice_list)
                     classes.player2_var.lower_sub_list.append(classes.player2_var.threek)
@@ -219,7 +217,7 @@ def lower_score():
             elif score == 'two'.lower().strip() or score == '2':
                 if isinstance(classes.player2_var.fourk, int):
                     print('Already scored. Try again!')
-                    upper_lower.upper_lower()
+                    upper_lower_p2.upper_lower_p2()
                 elif classes.player2_var.fourk == '__' and four_kind(classes.player2_var.dice_hist):
                     classes.player2_var.fourk = sum(classes.player2_var.dice_list)
                     classes.player2_var.lower_sub_list.append(classes.player2_var.fourk)
@@ -232,7 +230,7 @@ def lower_score():
             elif score == 'three'.lower().strip() or score == '3':
                 if isinstance(classes.player2_var.house, int):
                     print('Already scored. Try again!')
-                    upper_lower.upper_lower()
+                    upper_lower_p2.upper_lower_p2()
                 elif classes.player2_var.house == '__' and full_house(classes.player2_var.dice_hist):
                     classes.player2_var.house = 25
                     classes.player2_var.lower_sub_list.append(classes.player2_var.house)
@@ -245,7 +243,7 @@ def lower_score():
             elif score == 'four'.lower().strip() or score == '4':
                 if isinstance(classes.player2_var.sm_str, int):
                     print('Already scored. Try again!')
-                    upper_lower.upper_lower()
+                    upper_lower_p2.upper_lower_p2()
                 elif classes.player2_var.sm_str == '__' and sm_str(classes.player2_var.dice_hist):
                     classes.player2_var.sm_str = 30
                     classes.player2_var.lower_sub_list.append(classes.player2_var.sm_str)
@@ -258,7 +256,7 @@ def lower_score():
             elif score == 'five'.lower().strip() or score == '5':
                 if isinstance(classes.player2_var.lg_str, int):
                     print('Already scored. Try again!')
-                    upper_lower.upper_lower()
+                    upper_lower_p2.upper_lower_p2()
                 elif classes.player2_var.lg_str == '__' and lg_str(classes.player2_var.dice_hist):
                     classes.player2_var.lg_str = 40
                     classes.player2_var.lower_sub_list.append(classes.player2_var.lg_str)
@@ -282,7 +280,7 @@ def lower_score():
             elif score == 'seven'.lower().strip() or score == '7':
                 if isinstance(classes.player2_var.chance, int):
                     print('Already scored. Try again!')
-                    upper_lower.upper_lower()
+                    upper_lower_p2.upper_lower_p2()
                 elif classes.player2_var.chance == '__':
                     classes.player2_var.chance = sum(classes.player2_var.dice_list)
                     classes.player2_var.lower_sub_list.append(classes.player2_var.chance)
@@ -298,6 +296,13 @@ def lower_score():
             classes.player2_var.roll_counter = 0
             classes.player2_var.dice_list = []
             classes.player2_var.dice_hist = []
-            if classes.num_players > 2:
-                classes.active_player2 = False
-                classes.active_player3 = True
+            
+    if classes.num_players == 1:
+        classes.active_player1 = True
+    elif classes.num_players == 2:
+        if classes.active_player1:
+            classes.active_player1 = False
+            classes.active_player2 = True
+        else:
+            classes.active_player1 = True
+            classes.active_player2 = False

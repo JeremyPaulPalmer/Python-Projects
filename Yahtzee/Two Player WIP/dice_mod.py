@@ -1,3 +1,5 @@
+
+#graphical representation of each of the six dice
 def dice(roll):
     if roll == 1:
         print(' _____',)

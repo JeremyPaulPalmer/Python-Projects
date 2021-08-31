@@ -1,45 +1,46 @@
 class PlayersVar():
 
-    ones = '__'
-    twos = '__'
-    threes = '__'
-    fours = '__'
-    fives = '__'
-    sixes = '__'
-    subtotal = '__'
-    upper_bonus = '__'
-    total_upper = '__'
-    threek = '__'
-    fourk = '__'
-    house = '__'
-    sm_str = '__'
-    lg_str = '__'
-    yahtzee = '__'
-    chance = '__'
-    yaht_bon = '__'
-    total_lower = '__'
-    grand_total = '__'
+    def __init__(self):
+        self.ones = '__'
+        self.twos = '__'
+        self.threes = '__'
+        self.fours = '__'
+        self.fives = '__'
+        self.sixes = '__'
+        self.subtotal = '__'
+        self.upper_bonus = '__'
+        self.total_upper = '__'
+        self.threek = '__'
+        self.fourk = '__'
+        self.house = '__'
+        self.sm_str = '__'
+        self.lg_str = '__'
+        self.yahtzee = '__'
+        self.chance = '__'
+        self.yaht_bon = '__'
+        self.total_lower = '__'
+        self.grand_total = '__'
 
-    ones_list = []
-    twos_list = []
-    threes_list = []
-    fours_list = []
-    fives_list = []
-    sixes_list = []
-    upper_sub_list = []
-    lower_sub_list = []
-    dice_list = []
-    yaht_bon_list = []
-    dice_hist = []
-    kept_dice_list = []
-        
-    roll_counter = 0
-    counter_upper = 0
-    counter_lower = 0
-    low_subtotal = 0
+        self.ones_list = []
+        self.twos_list = []
+        self.threes_list = []
+        self.fours_list = []
+        self.fives_list = []
+        self.sixes_list = []
+        self.upper_sub_list = []
+        self.lower_sub_list = []
+        self.dice_list = []
+        self.yaht_bon_list = []
+        self.dice_hist = []
+        self.kept_dice_list = []
+            
+        self.roll_counter = 0
+        self.counter_upper = 0
+        self.counter_lower = 0
+        self.low_subtotal = 0
 
-    full_upper = False
-    full_lower = False
+        self.full_upper = False
+        self.full_lower = False
 
 player1_var = PlayersVar()
 player2_var = PlayersVar()
