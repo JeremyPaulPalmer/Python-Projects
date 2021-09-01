@@ -21,6 +21,7 @@ active_players.players()
 def player1():
     print('\n')
     print(classes.player1 + "'s turn!")
+    card.card()
     #player 1 starts by default. ensures that code runs only if player 1 is active (until player scores)
     while classes.active_player1:
         #as long as top or bottom is not full, roll dice
@@ -70,6 +71,7 @@ def player1():
 def player2():
     print('\n')
     print(classes.player2 + "'s turn!")
+    card.card()
     while classes.active_player2:
         if classes.player2_var.full_upper == False or classes.player2_var.full_lower == False:
 

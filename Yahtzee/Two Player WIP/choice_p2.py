@@ -1,11 +1,12 @@
 import classes
 import upper_lower_p2
 import dice_mod
+import card
 
 def choice_p2():
     if classes.active_player2:
-        answer = input('\n(s)core, (r)oll again, or (k)eep dice? (s/r/k) ')
-        while (answer != 's'.lower().strip()) and (answer != 'r'.lower().strip()) and (answer != 'k'.lower().strip()):
+        answer = input('\n(s)core, (r)oll again, (k)eep dice, or (v)iew card? (s/r/k/v) ')
+        while (answer != 's'.lower().strip()) and (answer != 'r'.lower().strip()) and (answer != 'k'.lower().strip()) and (answer != 'v'.lower().strip()):
             choice_p2()
         else:
             if answer == 's'.lower().strip():
@@ -19,4 +20,7 @@ def choice_p2():
                     keep = input(' (y/n) ')
                     if keep == 'y'.lower().strip():
                         classes.player2_var.kept_dice_list.append(i)
-                classes.player2_var.dice_list = classes.player2_var.kept_dice_list   
+                classes.player2_var.dice_list = classes.player2_var.kept_dice_list 
+            elif answer == 'v'.lower().strip():
+                card.card()
+                choice_p2()
