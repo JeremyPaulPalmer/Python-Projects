@@ -37,7 +37,6 @@ def sm_str(list):
     for i in range(0, 4):
         if list[i] > 0:
             counter += 1
-            print(counter)
         if counter == 4:
             return True
     counter = 0

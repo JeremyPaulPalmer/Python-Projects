@@ -9,8 +9,9 @@ import upper_lower_p2
 import card
 import choice_p1
 import choice_p2
-import time
 import active_players
+
+
 
 print('Welcome to Yahtzee!\n')
 
@@ -20,6 +21,7 @@ active_players.players()
 #found it simpler to divide players into functions. may move to modules at a later date
 def player1():
     print('\n')
+    #player1 is user created name variable
     print(classes.player1 + "'s turn!")
     card.card()
     #player 1 starts by default. ensures that code runs only if player 1 is active (until player scores)
@@ -67,6 +69,22 @@ def player1():
         classes.player1_var.dice_list = []
         classes.player1_var.dice_hist = []
 
+        #once player 1 scores and comes back here, checks to see if top or bottom is full
+        if classes.player1_var.full_upper:
+            if classes.player1_var.subtotal > 63:
+                classes.player1_var.upper_bonus = 35
+                classes.player1_var.total_upper = classes.player1_var.subtotal + classes.player1_var.upper_bonus
+            else:
+                classes.player1_var.upper_bonus = 0
+                classes.player1_var.total_upper = classes.player1_var.subtotal
+
+        if classes.player1_var.full_lower:
+            classes.player1_var.total_lower = sum(classes.player1_var.lower_sub_list)
+
+        if classes.player1_var.full_lower and classes.player1_var.full_upper:
+            classes.player1_var.grand_total = classes.player1_var.total_lower + classes.player1_var.total_upper
+            card.card()
+
 
 def player2():
     print('\n')
@@ -112,73 +130,70 @@ def player2():
             classes.player2_var.dice_list = []
             classes.player2_var.dice_hist = []
 
+            #check subtotal to see if the bonus is achieved
+            if classes.player2_var.full_upper:
+                if classes.player2_var.subtotal > 63:
+                    classes.player2_var.upper_bonus = 35
+                    classes.player2_var.total_upper = classes.player2_var.subtotal + classes.player2_var.upper_bonus
+                else:
+                    classes.player2_var.upper_bonus = 0
+                    classes.player2_var.total_upper = classes.player2_var.subtotal
+
+            if classes.player2_var.full_lower:
+                classes.player2_var.total_lower = sum(classes.player2_var.lower_sub_list)
+
+            if classes.player2_var.full_lower and classes.player2_var.full_upper:
+                classes.player2_var.grand_total = classes.player2_var.total_lower + classes.player2_var.total_upper
+                card.card()
+
+
+def end():
+    answer = input('\n' + classes.player1 + "'s card (1)," + classes.player2 + "'s card (2), or play (a)gain (1/2/a) ")
+    while (answer != '1'.lower().strip()) and (answer != '2'.lower().strip()) and (answer != 'a'.lower().strip()):
+        answer = input('\n' + classes.player1 + "'s card (1), " + classes.player2 + "'s card (2), or play (a)gain (1/2/a) ")
+    else:
+        if answer == '1'.lower().strip():
+            classes.active_player1 = True
+            card.card()
+            classes.active_player1 = False
+            end()
+        elif answer == '2'.lower().strip():
+            classes.active_player2 = True
+            card.card()
+            classes.active_player2 = False
+            end()
+        else:
+            os.execl(sys.executable, 'yahtzee.py', __file__, *sys.argv[1:])
+
+
 
 def play():
 
     '''Need to combine checks for all players to see if game is over. Need to develop how to handle game over scenarios for each and every player'''
     
     #will continue as long as at least one player is True. will most likely change this in future
-    while classes.active_player1 or classes.active_player2 or classes.active_player3 or classes.active_player4:
+    while classes.active_player1 or classes.active_player2:
         #ensuring player 1 is True before calling player1
         if classes.active_player1:
             player1()
 
-        #once player 1 scores and comes back here, checks to see if top or bottom is full
-        if classes.player1_var.full_upper:
-            if classes.player1_var.subtotal > 63:
-                classes.player1_var.upper_bonus = 35
-                classes.player1_var.total_upper = classes.player1_var.subtotal + classes.player1_var.upper_bonus
-            else:
-                classes.player1_var.upper_bonus = 0
-                classes.player1_var.total_upper = classes.player1_var.subtotal
-
-        if classes.player1_var.full_lower:
-            classes.player1_var.total_lower = sum(classes.player1_var.lower_sub_list)
-
-        if classes.player1_var.full_lower and classes.player1_var.full_upper:
-            classes.player1_var.grand_total = classes.player1_var.total_lower + classes.player1_var.total_upper
-            card.card()
-            print(classes.active_player1 + "'\s final score: ", classes.player1_var.grand_total)
-            time.sleep(2)
-
-            '''Need to develop this further'''
-            # answer = input('Great game! Would you like to play again? (y/n) ')
-            # if answer == 'yes'.lower().strip() or answer == 'y'.lower().strip():
-            #     os.execv(__file__, sys.argv)
-
         #if two player game, scoring activates player 2. ensures that player 2 is not activated unless True
         if classes.active_player2:
             player2()
+     
 
-        #check subtotal to see if the bonus is achieved
-        if classes.player2_var.full_upper:
-            if classes.player2_var.subtotal > 63:
-                classes.player2_var.upper_bonus = 35
-                classes.player2_var.total_upper = classes.player2_var.subtotal + classes.player2_var.upper_bonus
+        if classes.player1_var.full_lower and classes.player1_var.full_upper and classes.player2_var.full_lower and classes.player2_var.full_upper:
+            classes.active_player1 = False
+            classes.active_player2 = False
+
+            if classes.player1_var.grand_total > classes.player2_var.grand_total:
+                print(classes.player1, 'wins!')
+            elif classes.player1_var.grand_total == classes.player2_var.grand_total:
+                print("It's a tie!! Nobody wins! You should play again!")
             else:
-                classes.player2_var.upper_bonus = 0
-                classes.player2_var.total_upper = classes.player2_var.subtotal
+                print(classes.player2, 'wins!')
 
-        if classes.player2_var.full_lower:
-            classes.player2_var.total_lower = sum(classes.player2_var.lower_sub_list)
-
-        if classes.player2_var.full_lower and classes.player2_var.full_upper:
-            classes.player2_var.grand_total = classes.player2_var.total_lower + classes.player2_var.total_upper
-            card.card()
-            print(classes.active_player2 + "'\s final score: ", classes.player1_var.grand_total)
-            time.sleep(2)
-
-        # if classes.player1_var.grand_total > classes.player2_var.grand_total:
-        #     print(classes.player1, ' wins!')
-        # else:
-        #     print(classes.player2, ' wins!')
-
-            '''Need to develop further'''
-            # answer = input('Great game! Would you like to play again? (y/n) ')
-            # if answer == 'yes'.lower().strip() or answer == 'y'.lower().strip():
-            #     os.execv(__file__, sys.argv)
-        
-
+            end()
     
     
 

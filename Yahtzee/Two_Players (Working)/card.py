@@ -2,8 +2,6 @@ import classes
 
 def card():
     if classes.active_player1:
-        print('\n')
-        print(classes.player1 + "'s Card")
         print('\nUPPER SECTION:')
         print('(1)Ones:             ', classes.player1_var.ones)
         print('(2)Twos:             ', classes.player1_var.twos)
@@ -29,7 +27,6 @@ def card():
         print('GRAND TOTAL:         ', classes.player1_var.grand_total, '\n')
 
     if classes.active_player2:
-        print(classes.player2 + "'s Card")
         print('\nUPPER SECTION:')
         print('(1)Ones:             ', classes.player2_var.ones)
         print('(2)Twos:             ', classes.player2_var.twos)
