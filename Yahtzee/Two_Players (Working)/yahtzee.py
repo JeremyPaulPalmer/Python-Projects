@@ -20,6 +20,10 @@ active_players.players()
 
 #found it simpler to divide players into functions. may move to modules at a later date
 def player1():
+    classes.player1_var.full_upper = True
+    classes.player1_var.counter_upper = 6
+    classes.player1_var.subtotal = 64
+    classes.player1_var.counter_lower = 6
     print('\n')
     #player1 is user created name variable
     print(classes.player1 + "'s turn!")
@@ -87,6 +91,10 @@ def player1():
 
 
 def player2():
+    classes.player2_var.full_upper = True
+    classes.player2_var.counter_upper = 6
+    classes.player2_var.subtotal = 64
+    classes.player2_var.counter_lower = 6
     print('\n')
     print(classes.player2 + "'s turn!")
     card.card()
@@ -150,7 +158,7 @@ def player2():
 def end():
     answer = input('\n' + classes.player1 + "'s card (1)," + classes.player2 + "'s card (2), or play (a)gain (1/2/a) ")
     while (answer != '1'.lower().strip()) and (answer != '2'.lower().strip()) and (answer != 'a'.lower().strip()):
-        answer = input('\n' + classes.player1 + "'s card (1), " + classes.player2 + "'s card (2), or play (a)gain (1/2/a) ")
+        answer = input('\n' + classes.player1 + "'s card (1), ", classes.player2 + "'s card (2), or play (a)gain (1/2/a) ")
     else:
         if answer == '1'.lower().strip():
             classes.active_player1 = True
@@ -163,7 +171,7 @@ def end():
             classes.active_player2 = False
             end()
         else:
-            os.execl(sys.executable, 'yahtzee.py', __file__, *sys.argv[1:])
+            os.execl(sys.executable, 'python', __file__, *sys.argv[1:])
 
 
 
