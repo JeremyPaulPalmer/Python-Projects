@@ -2,6 +2,9 @@
 
 class PlayersVar():
 
+    def reset(self):
+        self.__init__()
+
     def __init__(self):
         self.ones = '__'
         self.twos = '__'
@@ -44,21 +47,14 @@ class PlayersVar():
         self.full_upper = False
         self.full_lower = False
 
-        self.score_flag = False
 
 player1_var = PlayersVar()
 player2_var = PlayersVar()
-player3_var = PlayersVar()
-player4_var = PlayersVar()
 
 active_player1 = True
 active_player2 = False
-active_player3 = False
-active_player4 = False
 
 player1 = ''
 player2 = ''
-player3 = ''
-player4 = ''
 
 num_players = 0

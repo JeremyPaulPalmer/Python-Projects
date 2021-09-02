@@ -12,12 +12,6 @@ import choice_p2
 import active_players
 
 
-
-print('Welcome to Yahtzee!\n')
-
-#asks for number of players and clean up code here
-active_players.players()
-
 #found it simpler to divide players into functions. may move to modules at a later date
 def player1():
     classes.player1_var.full_upper = True
@@ -171,13 +165,21 @@ def end():
             classes.active_player2 = False
             end()
         else:
-            os.execl(sys.executable, 'python', __file__, *sys.argv[1:])
+            classes.player1_var.reset()
+            classes.player2_var.reset()
+            classes.active_player1 = True
+            classes.num_players = 0
+            play()
 
 
 
 def play():
 
-    '''Need to combine checks for all players to see if game is over. Need to develop how to handle game over scenarios for each and every player'''
+    if classes.num_players == 0:
+        print('Welcome to Yahtzee!\n')
+
+        #asks for number of players and clean up code here
+        active_players.players()
     
     #will continue as long as at least one player is True. will most likely change this in future
     while classes.active_player1 or classes.active_player2:
