@@ -1,7 +1,5 @@
 import classes
 import dice_roll
-import os
-import sys
 import view_dice_p1
 import view_dice_p2
 import upper_lower_p1
@@ -14,10 +12,6 @@ import active_players
 
 #found it simpler to divide players into functions. may move to modules at a later date
 def player1():
-    classes.player1_var.full_upper = True
-    classes.player1_var.counter_upper = 6
-    classes.player1_var.subtotal = 64
-    classes.player1_var.counter_lower = 6
     print('\n')
     #player1 is user created name variable
     print(classes.player1 + "'s turn!")
@@ -85,10 +79,6 @@ def player1():
 
 
 def player2():
-    classes.player2_var.full_upper = True
-    classes.player2_var.counter_upper = 6
-    classes.player2_var.subtotal = 64
-    classes.player2_var.counter_lower = 6
     print('\n')
     print(classes.player2 + "'s turn!")
     card.card()
